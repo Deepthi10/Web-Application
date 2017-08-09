@@ -1,0 +1,18 @@
+ $scp_host = "handson-mysql";
+$scp_db = "quiz_dev";
+$scp_usrname = "user";
+$scp_pwd = "handson1234";
+$dbconn_scp = mysql_pconnect($scp_host, $scp_usrname, $scp_pwd) or trigger_error(mysql_error(),E_USER_ERROR); 
+?>
+<?php
+# Database connection and query
+# dbconn = $link_scp
+# dbname = $db_scp
+# print_r($_POST['opts']);
+
+mysql_select_db($scp_db, $dbconn_scp);
+$query_Recordset1 = "SELECT question_id, `question` from `question` where question_id = '4'"; 
+$Recordset1 = mysql_query($query_Recordset1, $dbconn_scp) or die(mysql_error());
+$row_Recordset1 = mysql_fetch_assoc($Recordset1);
+
+Select option from question_option where question_id=4;

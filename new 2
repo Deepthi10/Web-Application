@@ -1,0 +1,26 @@
+<?php
+ include ("./services/connect.php");
+ $conn=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) or die ('Error connecting to mysql');
+ if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} 
+
+  //if(isset($_REQUEST["strVal"])){
+	$sql="SELECT question_id, question from question where question LIKE '%".$_REQUEST['strVal']."%'";
+	echo $sql;
+	      $result=mysql_query($sql);
+        if( $result=mysql_query($sql)){
+     
+	        $array	= array();
+	       while($row=mysql_fetch_assoc($result)){ 
+//		   $qname=$row['question']."-".$row['question_id'];
+		   $array[]=$row;
+	       }
+	 echo json_encode($array);
+    }else{
+      echo "BAD QUERY";
+    }
+  //}
+
+  mysql_close($conn);
+?>
